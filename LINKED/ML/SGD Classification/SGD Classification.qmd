@@ -1,0 +1,126 @@
+---
+title: "SUPERVISED MACHINE LEARNING"
+subtitle: "**SGD Classification**"
+author: "**Jean René RANDRIANJAKAMANANA**"
+
+date: today
+highlight-style: vim-dark
+#ipynb-shell-interactivity: all 
+
+format:
+  html:
+    toc: true
+    toc-depth: 3
+    toc-expand: 1
+    toc-title: CONTENTS
+    toccolor: red
+    number-sections: false
+    css: regression.css
+    code-overflow: scroll
+    #keep-ipynb: true
+    format-links: [pdf]
+    code-copy: true
+    #notebook-links: global
+    notebook-view: true
+    grid: 
+      sidebar-width: 300px
+      gutter-width: 1.5rem
+      margin-width: 450px
+      body-width: 900px
+    include-before-body:
+      text: |
+        <div class='home'>
+          <p id='home'><a href='../../../index.html'><input type='button' name='home' value='HOME' style='margin-top: 2%; border-radius: 0.5em; background-color:darkcyan; color:ghostwhite;'/></a> </p>  
+          <p style="text-align: center; font-family: arial;">** Only the PDF format has the explanation </p>
+        </div>
+    include-after-body: 
+      text: |
+        <p style='float: left; margin-left: 10%; padding-bottom: 5%'> <a href='../K-Nearest Neighbors Classification/K-Nearest Neighbors Classification.html'><==K-Nearest Neighbors Classification</a></p> 
+        <p style='float: right; margin-right: 50%; padding-bottom: 5%;'><a href='../Random Forest Classification/Random Forest Classification.html'>Random Forest Classification==></a>
+        </p>
+      
+  ipynb: default
+     
+  pdf:
+     pdf-engine: pdflatex
+     execute: 
+        warning: false
+        error: false
+     
+     documentclass: report
+     geometry: 
+       - top=30mm
+       - left=20mm
+       - right=20mm
+      
+     # Table des matières
+     toc: true
+     toc-depth: 3
+     toc-expand: 1
+     toc-title: Table de matières
+     toccolor: red #Couleur des tables de matières
+     
+     # Theme et style de code
+     #highlight-style: oblivion
+     #highlight-style: dracula
+     code-line-numbers: true
+     code-annotations: true
+     
+     #Nymérotation des sections
+     # number-sections: true
+     include-in-header:
+        - text: \usepackage{authblk} \usepackage{tikzfill} \usepackage[dvipsnames]{xcolor}
+
+engine: jupyter
+jupyter: python3
+---
+
+# IV) CLASSIFICATION
+
+## 2) SGD Classifier of Linear Model
+
+The \textcolor{red}{SGD Classifier} is an algorithm of classification that is a part of the linear model module.
+
+```{python}
+
+import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt
+
+from sklearn.datasets import load_iris
+from sklearn.linear_model import SGDClassifier
+from sklearn.metrics import r2_score, mean_squared_error, mean_absolute_error
+```
+
+Here, we try to classify a type of flower though the \textcolor{blue}{iris} dataset.
+
+```{python}
+
+iris = load_iris()
+y = iris.target
+X = iris.data
+
+modele = SGDClassifier(random_state = 0)
+modele.fit(X,y)
+
+y_pred = modele.predict(X)
+R2_sc = r2_score(y, y_pred)
+R2 = modele.score(X, y)
+
+mse = mean_squared_error(y, y_pred)
+rmse = mean_squared_error(y, y_pred, squared = False)
+mae = mean_absolute_error(y, y_pred)
+
+print(f"\nScore (Error in the prediction): {R2}")
+print(f"Score (Error in the datasets): {R2_sc}\n")
+
+print(f"MSE = {mse}")
+print(f"RMSE = {rmse}")
+print(f"MAE = {mae}")
+
+plt.scatter(X[:,0], y, c = 'b', label = 'Real datasets')
+plt.scatter(X[:,0], y_pred, c = 'r', label = 'Prediciton datasets')
+plt.legend()
+plt.show()
+plt.close()
+```
