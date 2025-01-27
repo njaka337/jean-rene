@@ -1,0 +1,120 @@
+---
+title: "SUPERVISED MACHINE LEARNING"
+subtitle: "**Support Vector Regressor**"
+author: "**Jean René RANDRIANJAKAMANANA**"
+
+date: today
+highlight-style: vim-dark
+#ipynb-shell-interactivity: all 
+
+format:
+  html:
+    toc: true
+    toc-depth: 3
+    toc-expand: 1
+    toc-title: CONTENTS
+    toccolor: red
+    number-sections: false
+    css: regression.css
+    code-overflow: scroll
+    #keep-ipynb: true
+    format-links: [pdf]
+    code-copy: true
+    #notebook-links: global
+    notebook-view: true
+    grid: 
+      sidebar-width: 300px
+      gutter-width: 1.5rem
+      margin-width: 450px
+      body-width: 900px
+    include-before-body:
+      text: |
+        <div class='home'>
+          <p id='home'><a href='../../../index.html'><input type='button' name='home' value='HOME' style='margin-top: 2%; border-radius: 0.5em; background-color:darkcyan; color:ghostwhite;'/></a> </p> 
+          <p style="text-align: center; font-family: arial;">** Only the PDF format has the explanation </p>
+        </div>
+    include-after-body: 
+      text: |
+        <p style='float: left; margin-left: 10%; padding-bottom: 5%'><a href='../Multiple Linear Regression/Multiple Linear Regression.html'><==Multiple Linear Regression</a></p>
+      
+  ipynb: default
+     
+  pdf:
+     pdf-engine: pdflatex
+     execute: 
+        warning: false
+        error: false
+     
+     documentclass: report
+     geometry: 
+       - top=30mm
+       - left=20mm
+       - right=20mm
+      
+     # Table des matières
+     toc: true
+     toc-depth: 3
+     toc-expand: 1
+     toc-title: Table de matières
+     toccolor: red #Couleur des tables de matières
+     
+     # Theme et style de code
+     #highlight-style: oblivion
+     #highlight-style: dracula
+     code-line-numbers: true
+     code-annotations: true
+     
+     #Nymérotation des sections
+     # number-sections: true
+     include-in-header:
+        - text: \usepackage{authblk} \usepackage{tikzfill} \usepackage[dvipsnames]{xcolor}
+
+engine: jupyter
+jupyter: python3
+---
+
+# III) MODEL OF SVM (Support Vector Machine) with SVR (Support Vector Regressor)
+
+### 1) Directly created by sklearn
+
+```{python}
+import numpy as np 
+import matplotlib.pyplot as plt 
+import pandas as pd  
+
+from sklearn.linear_model import LinearRegression 
+from sklearn.svm import SVR 
+from sklearn.datasets import make_regression 
+from sklearn.metrics import mean_squared_error, r2_score
+```
+
+```{python}
+np.random.seed(0) 
+m = 100 
+X = np.linspace(0,10,m).reshape(m,1) 
+y = X**3 + np.random.randn(m,1)  
+X.shape 
+y.shape  
+
+# Initial data plot 
+plt.close() 
+plt.scatter(X,y) 
+plt.show()  
+
+# SVR of SVM 
+svr = SVR(C=100)  
+y = y.ravel() 
+svr.fit(X, y)  
+y_pred = svr.predict(X) 
+
+R2 = r2_score(y, y_pred) 
+rmse = mean_squared_error(y, y_pred) 
+
+print(f"r2_score = {R2} and .score = {svr.score(X, y)}") 
+print(f"RMSE = {rmse}")  
+
+plt.close() 
+plt.scatter(X, y) 
+plt.plot(X, y_pred, c = 'r') 
+plt.show()
+```
