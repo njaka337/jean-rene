@@ -127,8 +127,9 @@ p#copy {
 }
 
 #home{
+ border-radius: 1%;
  background: blue;
- padding: 3%;
+ padding: 0.5%;
  color: white;
 }
 
