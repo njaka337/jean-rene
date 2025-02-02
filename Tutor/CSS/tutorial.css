@@ -175,3 +175,10 @@ body a {
     text-decoration: none;
 }
 }
+
+#home{
+ float: right;
+ background: blue;
+ padding: 3%;
+ color: white;
+}
