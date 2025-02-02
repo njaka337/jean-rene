@@ -1,4 +1,14 @@
 @media all and (max-width: 426px){
+  .home{
+ float: right;
+}
+
+#home{
+ border-radius: 1%;
+ background: blue;
+ padding: 1.5%;
+ color: white;
+}
  body {
     background: cadetblue;
     font-family: math;
@@ -67,6 +77,16 @@ p#copy {
 }
 
 @media all and (min-width: 425px) and (max-width: 1023px){
+  .home{
+ float: right;
+}
+
+#home{
+ border-radius: 1%;
+ background: blue;
+ padding: 1.5%;
+ color: white;
+}
  header {
     display: block;
     border-style: solid;
@@ -129,7 +149,7 @@ p#copy {
 #home{
  border-radius: 1%;
  background: blue;
- padding: 0.5%;
+ padding: 1.5%;
  color: white;
 }
 
