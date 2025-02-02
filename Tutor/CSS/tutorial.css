@@ -122,6 +122,16 @@ p#copy {
 }
 
 @media all and (min-width: 1023px){
+ .home{
+ float: right;
+}
+
+#home{
+ background: blue;
+ padding: 3%;
+ color: white;
+}
+
 body {
     background: darkseagreen;
     font-family: math;
@@ -174,11 +184,4 @@ p#copy {
 body a {
     text-decoration: none;
 }
-}
-
-#home{
- float: right;
- background: blue;
- padding: 3%;
- color: white;
 }
